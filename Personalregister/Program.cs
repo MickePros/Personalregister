@@ -24,7 +24,7 @@ namespace Personalregister
             Console.WriteLine("3) [REMOVE] employee from the register (WIP)");
             Console.WriteLine("4) [EMPTY] the register (WIP)");
             Console.WriteLine("5) [GOOD] bye, have a nice day.");
-            string input = Console.ReadLine();
+            String input = Console.ReadLine();
             if (input == "1" || input == "ADD")
             {
                 AddEmployee(register);
@@ -50,21 +50,30 @@ namespace Personalregister
             for (int i = 0; i < employeeList.Length; i++)
             {
                 Console.WriteLine("{0}", employeeList[i]);
-                Console.Write("Back to start.");
-                Console.ReadLine();
-                Greeting(register);
             }
+            Console.Write("Back to start.");
+            Console.ReadLine();
+            Greeting(register);
         }
 
         private static void AddEmployee(List<string> register)
         {
             Console.Clear();
-            String employee = "";
-            Console.Write("Tell me the name of the employee: ");
-            employee = Console.ReadLine();
-            Console.Write("Tell me the salary of {0}: ", employee);
-            employee = employee + " " + Console.ReadLine();
-            register.Add(employee);
+            while (true)
+            {
+                String employee = "";
+                Console.Write("Tell me the name of the employee: ");
+                employee = Console.ReadLine();
+                Console.Write("Tell me the salary of {0}: ", employee);
+                employee = employee + " " + Console.ReadLine();
+                register.Add(employee);
+                Console.Write("Would you like to add another employee? (yes/no)");
+                String input = Console.ReadLine();
+                if (input == "no")
+                {
+                    break; 
+                }
+            }
             Greeting(register);
         }
     }
